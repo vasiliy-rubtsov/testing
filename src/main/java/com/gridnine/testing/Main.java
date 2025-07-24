@@ -3,8 +3,6 @@ package com.gridnine.testing;
 import java.time.LocalDateTime;
 import java.util.List;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         List<Flight> flights = FlightBuilder.createFlights();
@@ -12,7 +10,7 @@ public class Main {
         System.out.println("Исходный набор данных");
         flights.forEach(System.out::println);
 
-        System.out.println("Применено правило 1: Удалены перелеты в вылетом раньше текущего момента времени");
+        System.out.println("Применено правило 1: Удалены перелеты c вылетом раньше текущего момента времени");
         Rule1 rule1 = new Rule1(LocalDateTime.now());
         flights.stream().filter(rule1::check).forEach(System.out::println);
 
@@ -20,7 +18,7 @@ public class Main {
         Rule2 rule2 = new Rule2();
         flights.stream().filter(rule2::check).forEach(System.out::println);
 
-        System.out.println("Применено правило 3: Удалены перелеты, в которых суммарное время, проведенное на земле, меньше 2 часов");
+        System.out.println("Применено правило 3: Удалены перелеты, в которых суммарное время, проведенное на земле, больше 2 часов");
         Rule3 rule3 = new Rule3(2L);
         flights.stream().filter(rule3::check).forEach(System.out::println);
 
